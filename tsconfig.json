@@ -17,6 +17,9 @@
     "importHelpers": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
+    "paths": {
+      "^/*": ["src/*"]
+    },
     "noUnusedLocals": true
   },
   "exclude": [
