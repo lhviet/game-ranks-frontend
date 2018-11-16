@@ -23,6 +23,7 @@
     "missing-jsdoc": false,
     "no-default-export": false,
     "import-name": false,
-    "variable-name": ["check-format", "allow-leading-underscore", "allow-trailing-underscore", "allow-pascal-case"]
+    "variable-name": ["check-format", "allow-leading-underscore", "allow-trailing-underscore", "allow-pascal-case"],
+    "completed-docs": false
   }
 }
