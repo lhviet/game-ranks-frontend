@@ -12,7 +12,17 @@
       "config/**/*.js",
       "node_modules/**/*.ts",
       "coverage/lcov-report/*.js"
-    ],
-    "no-submodule-imports": [true, "^"]
+    ]
+  },
+  "rules": {
+    "no-submodule-imports": {
+      "severity": "default",
+      "options": "^"
+    },
+    "no-implicit-dependencies": [true, ["dev", "^"]],
+    "missing-jsdoc": false,
+    "no-default-export": false,
+    "import-name": false,
+    "variable-name": ["check-format", "allow-leading-underscore", "allow-trailing-underscore", "allow-pascal-case"]
   }
 }

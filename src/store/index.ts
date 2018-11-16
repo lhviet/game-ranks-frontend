@@ -1,4 +1,4 @@
-import rootReducer from '^/store/duck/reducers';
+import reducers from '^/store/duck/reducers';
 import {StoreState} from '^/store/duck/types';
 import {applyMiddleware, createStore} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -10,9 +10,8 @@ export const INITIAL_STATE: StoreState = {
 const configureStore = (
   middlewares: any[],
   initialState: any = {...INITIAL_STATE},
-  reducers = rootReducer
+  reducers: any,
 ) => {
-
   const enhancer = composeWithDevTools(
     applyMiddleware(...middlewares)
     // other store enhancers if any
@@ -37,4 +36,4 @@ if (process.env.NODE_ENV === `development`) {
   middlewares.push(logger);*/
 }
 
-export const store = configureStore(middlewares);
+export const store = configureStore(middlewares, {}, reducers);

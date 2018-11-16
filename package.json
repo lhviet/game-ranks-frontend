@@ -52,13 +52,15 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "lint": "tslint -p tsconfig.json -t codeFrame"
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",
     "@types/node": "^10.12.9",
     "@types/react": "^16.7.6",
     "@types/react-dom": "^16.0.9",
+    "@types/styled-components": "^4.1.0",
     "typescript": "^3.1.6",
     "redux-devtools-extension": "^2.13.5",
     "tslint": "^5.11.0",
