@@ -16,6 +16,7 @@ import {ListUsers} from '^/store/duck/user';
 
 import Game from '^/components/pages/Game';
 import App from '^/containers/pages/App';
+import User from './components/pages/User';
 
 const MyApp: StyledComponent<React.ComponentClass, {}> = styled(App)`
   margin: 0;
@@ -33,6 +34,7 @@ ReactDOM.render(
       <div>
         <Route exact={true} path='/' component={MyApp}/>
         <Route path='/game' component={Game}/>
+        <Route path='/user' component={User}/>
       </div>
     </Router>
   </Provider>,
