@@ -6,7 +6,7 @@ import {combineEpics, createEpicMiddleware, Epic} from 'redux-observable';
 
 import reducers from '^/store/duck';
 import { epics as gameEpic } from '^/store/duck/game';
-import * as T from '^/store/Types';
+import * as T from '^/store/types';
 
 export const rootEpic: Epic = combineEpics(
   gameEpic

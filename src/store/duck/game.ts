@@ -6,7 +6,7 @@ import {of} from 'rxjs';
 import {ajax, AjaxError} from 'rxjs/ajax';
 import {catchError, switchMap, takeUntil} from 'rxjs/operators';
 
-import * as T from '^/store/Types';
+import * as T from '^/store/types';
 
 // ----- ACTIONS & EPICS -------------------------------------------
 export const GAME__LIST: string = 'GAME__LIST';
