@@ -6,6 +6,7 @@ import * as T from '^/store/types';
 
 import Topbar from '^/components/molecules/Topbar';
 import AddUserForm from '^/containers/molecules/AddUserForm';
+import TimeSpan from '^/components/atoms/TimeSpan';
 
 const Root: StyledComponent<'div', {}> = styled.div`
   text-align: center;
@@ -50,8 +51,8 @@ class App extends React.Component<Props> {
                   <div>{g.value.code}</div>
                   <div>{g.value.name}</div>
                   <div>{g.value.description}</div>
-                  <div>{g.value.updated_at}</div>
-                  <div>{g.value.created_at}</div>
+                  <div>Updated at <TimeSpan timestamp={g.value.updated_at} /></div>
+                  <div>Updated at <TimeSpan timestamp={g.value.created_at} /></div>
                 </Link>
               </ListItem>
             )}

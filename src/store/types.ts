@@ -31,6 +31,7 @@ export interface Game extends BaseContent {
     code: string;
     name: string;
     description: string;
+    img_url: string;
     updated_at: number;
     created_at: number;
   };
@@ -39,6 +40,7 @@ export interface User extends BaseContent {
   readonly value: {
     username: string;
     display_name: string;
+    img_url: string;
     updated_at: number;
     created_at: number;
   };

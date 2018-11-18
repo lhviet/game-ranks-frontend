@@ -12,7 +12,7 @@ export const mapDispatchToProps: (
 ) => DispatchProps = (
   dispatch
 ) => ({
-  onSubmitNewUser(username: string, display_name: string): void {
+  onSubmitNewUser(username: string, display_name: string, img_url: string): void {
     dispatch(AddNewUser(username, display_name));
   }
 });
