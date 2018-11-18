@@ -1,8 +1,7 @@
 import {createActionCancel, createActionDone, createActionFailed, createActionStart} from '^/store/duck/ActionHelper';
 import {makeAPIURL} from '^/store/duck/API';
-import {AnyAction, Reducer} from 'redux';
+import {Action, AnyAction} from 'redux';
 import {ActionsObservable, combineEpics, Epic, ofType} from 'redux-observable';
-import {of} from 'rxjs';
 import {ajax, AjaxError} from 'rxjs/ajax';
 import {catchError, switchMap, takeUntil} from 'rxjs/operators';
 
@@ -10,17 +9,17 @@ import * as T from '^/store/types';
 
 // ----- ACTIONS & EPICS -------------------------------------------
 export const GAME__LIST: string = 'GAME__LIST';
-export const listGames: () => AnyAction = () => ({ type: GAME__LIST });
+export const ListGames: () => Action = () => createActionStart(GAME__LIST);
 
-const epicListGamesStart = (action$: ActionsObservable<AnyAction>) => action$.pipe(
-  ofType(createActionStart(GAME__LIST)),
+const epicListGames = (action$: ActionsObservable<AnyAction>) => action$.pipe(
+  ofType(ListGames().type),
   switchMap(() => ajax.get(makeAPIURL('game'))
     .pipe(
-      switchMap(({response}) => of(createActionDone(GAME__LIST, response.data))),
-      catchError((ajaxError: AjaxError) => of(createActionFailed(GAME__LIST, ajaxError))),
+      switchMap(({response}) => [createActionDone(GAME__LIST, response.data)]),
+      catchError((ajaxError: AjaxError) => [(createActionFailed(GAME__LIST, ajaxError))]),
       takeUntil(
         action$.pipe(
-          ofType(createActionCancel(GAME__LIST))
+          ofType(createActionCancel(GAME__LIST).type)
         )
       )
     ))
@@ -28,23 +27,19 @@ const epicListGamesStart = (action$: ActionsObservable<AnyAction>) => action$.pi
 
 // ----- EPICs -----------------------------------------------------
 export const epics: Epic = combineEpics(
-  epicListGamesStart,
+  epicListGames
 );
 
 // ----- REDUCER ---------------------------------------------------
 const initialState: T.GameState = {
-  games: {},
-  allIds: [],
-  getGamesStatus: T.APIStatus.IDLE,
+  games: [],
+  getGamesStatus: T.APIStatus.IDLE
 };
 /**
  * Process only actions of GAME__
  */
-const reducer: Reducer<T.GameState> = (state = initialState, action: AnyAction) => {
-
-  // console.log('action = ', action);
-
-  // if this action is not belong to WORD, return the original state
+const reducer = (state = initialState, action: AnyAction) => {
+  // if this action is not belong to GAME, return the original state
   if (action.type.indexOf('GAME__') !== 0) {
     return state;
   }
@@ -53,7 +48,11 @@ const reducer: Reducer<T.GameState> = (state = initialState, action: AnyAction) 
     case `${GAME__LIST}_START`:
       return {...state, getGamesStatus: T.APIStatus.PROGRESS};
     case `${GAME__LIST}_DONE`:
-      return {...state, searchResult: action.data, getGamesStatus: T.APIStatus.SUCCESS};
+      return {
+        ...state,
+        games: action.data,
+        getGamesStatus: T.APIStatus.SUCCESS
+      };
     case `${GAME__LIST}_FAILED`:
       return {...state, getGamesStatus: T.APIStatus.ERROR};
 

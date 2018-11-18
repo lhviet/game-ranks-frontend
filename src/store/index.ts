@@ -4,29 +4,32 @@ import {applyMiddleware, combineReducers, createStore, Reducer} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {combineEpics, createEpicMiddleware, Epic} from 'redux-observable';
 
-import reducers from '^/store/duck';
 import { epics as gameEpic } from '^/store/duck/game';
+import { epics as userEpic } from '^/store/duck/user';
+
+import GameReducer from '^/store/duck/game';
+import UserReducer from '^/store/duck/user';
+
 import * as T from '^/store/types';
 
 export const rootEpic: Epic = combineEpics(
-  gameEpic
+  gameEpic,
+  userEpic
 );
 
 const epicMiddleware = createEpicMiddleware();
 
 const configureStore = (
   history: History,
-  reducers: Reducer<T.State>,
+  reducers: Reducer<T.State>
 ) => {
   const enhancer = composeWithDevTools(
     applyMiddleware(
       epicMiddleware,
-      routerMiddleware(history),
+      routerMiddleware(history)
     )
     // other store enhancers if any
   );
-
-  epicMiddleware.run(rootEpic);
 
   return createStore(reducers, enhancer);
 };
@@ -42,7 +45,11 @@ if (process.env.NODE_ENV === `development`) {
 
 const history: History = createBrowserHistory();
 const storeReducer = combineReducers({
-  ...reducers,
-    router: connectRouter(history),
+    Game: GameReducer,
+    User: UserReducer,
+    router: connectRouter(history)
   }) as Reducer<T.State>;
 export const store = configureStore(history, storeReducer);
+
+// run the epics after middlewares in store really applied
+epicMiddleware.run(rootEpic);

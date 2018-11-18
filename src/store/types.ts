@@ -25,17 +25,31 @@ export interface Game extends BaseContent {
     created_at: number;
   };
 }
+export interface User extends BaseContent {
+  readonly value: {
+    username: string;
+    display_name: string;
+    updated_at: number;
+    created_at: number;
+  };
+}
 
 export interface GameState {
-  readonly games: {
-    readonly [id: number]: Game;
-  };
-  readonly allIds: Game['keyid'][];
+  readonly games: Game[];
   readonly getGamesStatus: APIStatus;
+}
+export interface UserState {
+  readonly user: {
+    [user_keyid: string]: User;
+  };
+  readonly userIds: number[];
+  readonly getUsersStatus: APIStatus;
+  readonly addUsersStatus: APIStatus;
 }
 
 export interface State {
   readonly Game: GameState;
+  readonly User: UserState;
 
   readonly router: RouterState;
 }
