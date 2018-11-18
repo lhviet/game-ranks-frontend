@@ -17,13 +17,14 @@
   "rules": {
     "no-submodule-imports": {
       "severity": "default",
-      "options": "^"
+      "options": ["^", "rxjs/ajax", "rxjs/operators"]
     },
     "no-implicit-dependencies": [true, ["dev", "^"]],
     "missing-jsdoc": false,
     "no-default-export": false,
     "import-name": false,
     "variable-name": ["check-format", "allow-leading-underscore", "allow-trailing-underscore", "allow-pascal-case"],
-    "completed-docs": false
+    "completed-docs": false,
+    "interface-name": [true, "never-prefix"]
   }
 }

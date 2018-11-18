@@ -1,31 +1,35 @@
-import reducers from '^/store/duck/reducers';
-import {StoreState} from '^/store/duck/types';
-import {applyMiddleware, createStore} from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import {createEpicMiddleware} from 'redux-observable';
+import {connectRouter, routerMiddleware} from 'connected-react-router';
+import { createBrowserHistory, History } from 'history';
+import {applyMiddleware, combineReducers, createStore, Reducer} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import {combineEpics, createEpicMiddleware, Epic} from 'redux-observable';
 
-export const INITIAL_STATE: StoreState = {
-};
+import reducers from '^/store/duck';
+import { epics as gameEpic } from '^/store/duck/game';
+import * as T from '^/store/Types';
 
-const configureStore = (
-  middlewares: any[],
-  initialState: any = {...INITIAL_STATE},
-  reducers: any,
-) => {
-  const enhancer = composeWithDevTools(
-    applyMiddleware(...middlewares)
-    // other store enhancers if any
-  );
-
-  return createStore(reducers, initialState, enhancer);
-};
+export const rootEpic: Epic = combineEpics(
+  gameEpic
+);
 
 const epicMiddleware = createEpicMiddleware();
 
-// Build the middleware for intercepting and dispatching navigation actions
-const middlewares = [
-  epicMiddleware
-];
+const configureStore = (
+  history: History,
+  reducers: Reducer<T.State>,
+) => {
+  const enhancer = composeWithDevTools(
+    applyMiddleware(
+      epicMiddleware,
+      routerMiddleware(history),
+    )
+    // other store enhancers if any
+  );
+
+  epicMiddleware.run(rootEpic);
+
+  return createStore(reducers, enhancer);
+};
 
 // console.log('ENVIRONMENT = ', process.env.NODE_ENV);
 if (process.env.NODE_ENV === `development`) {
@@ -36,4 +40,9 @@ if (process.env.NODE_ENV === `development`) {
   middlewares.push(logger);*/
 }
 
-export const store = configureStore(middlewares, {}, reducers);
+const history: History = createBrowserHistory();
+const storeReducer = combineReducers({
+  ...reducers,
+    router: connectRouter(history),
+  }) as Reducer<T.State>;
+export const store = configureStore(history, storeReducer);
