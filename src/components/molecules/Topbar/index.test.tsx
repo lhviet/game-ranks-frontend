@@ -1,20 +1,16 @@
 import * as enzyme from 'enzyme';
 import * as React from 'react';
-import Topbar, { Props } from './';
+
+import Topbar from './';
 
 describe('Topbar', () => {
-  const createTopbarProps: () => Props = () => ({
-    onLogoClick: jest.fn(),
-  });
-  let topbarProps: Props;
 
   describe('by Shallow Rendering', () => {
-    let component: enzyme.ShallowWrapper<Props>;
+    let component: enzyme.ShallowWrapper;
 
     beforeEach(() => {
-      topbarProps = createTopbarProps();
       component = enzyme.shallow(
-        <Topbar {...topbarProps} />
+        <Topbar />
       );
     });
 

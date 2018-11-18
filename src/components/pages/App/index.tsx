@@ -1,10 +1,11 @@
 import * as React from 'react';
+import {Link} from 'react-router-dom';
 import styled, {StyledComponent} from 'styled-components';
 
 import * as T from '^/store/types';
 
+import Topbar from '^/components/molecules/Topbar';
 import AddUserForm from '^/containers/molecules/AddUserForm';
-import Topbar from '^/containers/molecules/Topbar';
 
 const Root: StyledComponent<'div', {}> = styled.div`
   text-align: center;
@@ -42,14 +43,18 @@ class App extends React.Component<Props> {
           <h2>Game List</h2>
           <br />
           <ul>
-            {games.map((g) => <ListItem key={g.keyid}>
-              <div>{g.keyid}</div>
-              <div>{g.value.code}</div>
-              <div>{g.value.name}</div>
-              <div>{g.value.description}</div>
-              <div>{g.value.updated_at}</div>
-              <div>{g.value.created_at}</div>
-            </ListItem>)}
+            {games.map((g) =>
+              <ListItem key={g.keyid}>
+                <Link to={`/game/${g.value.code}`}>
+                  <div>{g.keyid}</div>
+                  <div>{g.value.code}</div>
+                  <div>{g.value.name}</div>
+                  <div>{g.value.description}</div>
+                  <div>{g.value.updated_at}</div>
+                  <div>{g.value.created_at}</div>
+                </Link>
+              </ListItem>
+            )}
           </ul>
 
           <br />

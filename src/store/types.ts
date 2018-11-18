@@ -3,6 +3,14 @@ import { RouterState as RS } from 'connected-react-router';
 export type RouterState = RS;
 
 /**
+ * Enum for Win-Loss status
+ */
+export enum WinLossStatus {
+  WIN = 1,
+  LOSS = 0,
+}
+
+/**
  * Enum for representing API status
  */
 export enum APIStatus {
@@ -11,6 +19,8 @@ export enum APIStatus {
   ERROR = 'ERROR',
   SUCCESS = 'SUCCESS',
 }
+
+export const HEADER_JSON: object = { 'Content-Type': 'application/json' };
 
 export interface BaseContent {
   readonly keyid: string;
@@ -37,6 +47,7 @@ export interface User extends BaseContent {
 export interface GameState {
   readonly games: Game[];
   readonly getGamesStatus: APIStatus;
+  readonly addMatchStatus: APIStatus;
 }
 export interface UserState {
   readonly user: {

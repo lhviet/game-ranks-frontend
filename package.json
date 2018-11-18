@@ -58,7 +58,8 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "history": "^4.7.2",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "lodash-es": "^4.17.11"
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",
@@ -70,6 +71,7 @@
     "@types/react-router": "^4.4.1",
     "@types/react-router-dom": "^4.3.1",
     "@types/enzyme": "^3.1.15",
+    "@types/lodash-es": "^4.17.1",
     "typescript": "^3.1.6",
     "tslint": "^5.11.0",
     "tslint-eslint-rules": "^5.4.0",

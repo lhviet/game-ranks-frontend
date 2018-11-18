@@ -3,6 +3,10 @@ import styled, {StyledComponent} from 'styled-components';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
 
 import registerServiceWorker from '^/registerServiceWorker';
 
@@ -10,6 +14,7 @@ import { store } from '^/store';
 import {ListGames} from '^/store/duck/game';
 import {ListUsers} from '^/store/duck/user';
 
+import Game from '^/components/pages/Game';
 import App from '^/containers/pages/App';
 
 const MyApp: StyledComponent<React.ComponentClass, {}> = styled(App)`
@@ -24,7 +29,12 @@ store.dispatch(ListUsers());
 const rootElement: HTMLElement | null = document.getElementById('root');
 ReactDOM.render(
   <Provider store={store}>
-    <MyApp />
+    <Router>
+      <div>
+        <Route exact={true} path='/' component={MyApp}/>
+        <Route path='/game' component={Game}/>
+      </div>
+    </Router>
   </Provider>,
   rootElement
 );

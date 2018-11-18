@@ -1,5 +1,5 @@
 import {connectRouter, routerMiddleware} from 'connected-react-router';
-import { createBrowserHistory, History } from 'history';
+import {History} from 'history';
 import {applyMiddleware, combineReducers, createStore, Reducer} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {combineEpics, createEpicMiddleware, Epic} from 'redux-observable';
@@ -11,6 +11,7 @@ import GameReducer from '^/store/duck/game';
 import UserReducer from '^/store/duck/user';
 
 import * as T from '^/store/types';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 export const rootEpic: Epic = combineEpics(
   gameEpic,
@@ -19,7 +20,7 @@ export const rootEpic: Epic = combineEpics(
 
 const epicMiddleware = createEpicMiddleware();
 
-const configureStore = (
+export const configureStore = (
   history: History,
   reducers: Reducer<T.State>
 ) => {
@@ -31,7 +32,12 @@ const configureStore = (
     // other store enhancers if any
   );
 
-  return createStore(reducers, enhancer);
+  const store = createStore(reducers, enhancer);
+
+// run the epics after middlewares in store really applied
+  epicMiddleware.run(rootEpic);
+
+  return store;
 };
 
 // console.log('ENVIRONMENT = ', process.env.NODE_ENV);
@@ -50,6 +56,3 @@ const storeReducer = combineReducers({
     router: connectRouter(history)
   }) as Reducer<T.State>;
 export const store = configureStore(history, storeReducer);
-
-// run the epics after middlewares in store really applied
-epicMiddleware.run(rootEpic);

@@ -13,7 +13,7 @@ export const mapStateToProps: (
   { Game, User }
 ) => ({
   games: Game.games,
-  user: User.user,
+  user: User.user
 });
 
-export default connect(mapStateToProps, undefined)(App);
+export default connect(mapStateToProps)(App);

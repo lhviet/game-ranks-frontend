@@ -1,7 +1,8 @@
-import LogoPng from '^/assets/terem-logov2.png';
 import * as React from 'react';
-import {StyledComponent} from 'styled-components';
-import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+import styled, {StyledComponent} from 'styled-components';
+
+import LogoPng from '^/assets/terem-logov2.png';
 
 const Root: StyledComponent<'div', {}> = styled.div`
   display: flex;
@@ -36,13 +37,12 @@ const Title: StyledComponent<'h1', {}> = styled.h1`
   color: #ff9595;
 `;
 
-export interface Props {
-  onLogoClick(): void;
-}
-const Topbar: React.FunctionComponent<Props> = ({ onLogoClick }: Props) => {
+const Topbar: React.FunctionComponent = () => {
   return (
     <Root>
-      <TopbarLogo src={LogoPng} onClick={onLogoClick} />
+      <Link to={'/'} >
+        <TopbarLogo src={LogoPng} />
+      </Link>
       <Title>Game Ranking System</Title>
     </Root>
   );
