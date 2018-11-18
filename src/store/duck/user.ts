@@ -15,6 +15,10 @@ export const USER__ADD: string = 'USER__ADD';
 export const AddNewUser: (username: string, display_name: string) => Action =
   (username: string, display_name: string) => createActionStart(USER__ADD, {username, display_name});
 
+export const USER__GET_GAME_INFO: string = 'USER__GET_GAME_INFO';
+export const GetUserGameInfo: (user_keyid: string) => Action =
+  (userKeyid: string) => createActionStart(USER__GET_GAME_INFO, {userKeyid});
+
 const epicListUsers = (action$: ActionsObservable<AnyAction>) => action$.pipe(
   ofType(createActionStart(USER__LIST).type),
   switchMap(() => ajax.get(makeAPIURL('user'))
@@ -43,10 +47,28 @@ const epicAddNewUser = (action$: ActionsObservable<AnyAction>) => action$.pipe(
     ))
 );
 
+const epicGetUserGameInfo = (action$: ActionsObservable<AnyAction>) => action$.pipe(
+  ofType(createActionStart(USER__GET_GAME_INFO).type),
+  mergeMap(({data}) => ajax.get(makeAPIURL('user', data.userKeyid))
+    .pipe(
+      map(({response}) => createActionDone(USER__GET_GAME_INFO, {
+        userKeyid: data.userKeyid,
+        gameInfo: response.data,
+      })),
+      catchError((ajaxError: AjaxError) => [(createActionFailed(USER__GET_GAME_INFO, ajaxError))]),
+      takeUntil(
+        action$.pipe(
+          ofType(createActionCancel(USER__GET_GAME_INFO).type)
+        )
+      )
+    ))
+);
+
 // ----- EPICs -----------------------------------------------------
 export const epics: Epic = combineEpics(
   epicListUsers,
   epicAddNewUser,
+  epicGetUserGameInfo,
 );
 
 // ----- REDUCER ---------------------------------------------------
@@ -55,6 +77,7 @@ const initialState: T.UserState = {
   userIds: [],
   getUsersStatus: T.APIStatus.IDLE,
   addUsersStatus: T.APIStatus.IDLE,
+  getUserGameInfoStatus: T.APIStatus.IDLE,
 };
 /**
  * Process only actions of USER__
@@ -70,7 +93,7 @@ const reducer = (state = initialState, action: AnyAction) => {
       return {...state, getUsersStatus: T.APIStatus.PROGRESS};
     case `${USER__LIST}_DONE`:
       const user = {};
-      action.data.forEach((g: T.User) => user[g.keyid] = g);
+      action.data.forEach((u: T.User) => user[u.keyid] = {info: u});
 
       return {
         ...state,
@@ -84,19 +107,37 @@ const reducer = (state = initialState, action: AnyAction) => {
     case `${USER__ADD}_START`:
       return {...state, addUsersStatus: T.APIStatus.PROGRESS};
     case `${USER__ADD}_DONE`:
-      const newUserState = {
-        ...state.user,
-        [action.data.keyid]: action.data,
-      };
-
       return {
         ...state,
-        user: newUserState,
+        user: {
+          ...state.user,
+          [action.data.keyid]: {
+            info: action.data,
+            game: {},
+          },
+        },
         userIds: state.userIds.push(action.data.keyid),
         addUsersStatus: T.APIStatus.SUCCESS
       };
     case `${USER__ADD}_FAILED`:
       return {...state, addUsersStatus: T.APIStatus.ERROR};
+
+    case `${USER__GET_GAME_INFO}_START`:
+      return {...state, getUserGameInfoStatus: T.APIStatus.PROGRESS};
+    case `${USER__GET_GAME_INFO}_DONE`:
+      const currentUser = state.user[action.data.userKeyid];
+      currentUser.game = action.data.gameInfo;
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          [action.data.userKeyid]: currentUser,
+        },
+        getUserGameInfoStatus: T.APIStatus.SUCCESS
+      };
+    case `${USER__GET_GAME_INFO}_FAILED`:
+      return {...state, getUserGameInfoStatus: T.APIStatus.ERROR};
 
     default:
       return state;

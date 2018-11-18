@@ -82,7 +82,7 @@ class GameDetail extends React.Component<Props, State> {
         Hello, this is GameDetail of {game ? game.value.name : 'ERROR, does this Game exist ?!'}
 
         {userIds.map((u) => {
-          return (<div key={u} onClick={() => this.addParticipant(u)}>{user[u].value.username} ({user[u].value.display_name})</div>);
+          return (<div key={u} onClick={() => this.addParticipant(u)}>{user[u].info.value.username} ({user[u].info.value.display_name})</div>);
         })}
 
         <br />
@@ -90,7 +90,7 @@ class GameDetail extends React.Component<Props, State> {
         <div onClick={this.setWinnerLoser}>
           <h2>Winners</h2>
           {winners.map((winner) => {
-            return (<div key={winner} onClick={() => this.removeParticipant(winner)}>{user[winner].value.username}</div>);
+            return (<div key={winner} onClick={() => this.removeParticipant(winner)}>{user[winner].info.value.username}</div>);
           })}
         </div>
 
@@ -99,7 +99,7 @@ class GameDetail extends React.Component<Props, State> {
         <div onClick={this.setWinnerLoser}>
           <h2>Others</h2>
           {losers.map((loser) => {
-            return (<div key={loser} onClick={() => this.removeParticipant(loser)}>{user[loser].value.username}</div>);
+            return (<div key={loser} onClick={() => this.removeParticipant(loser)}>{user[loser].info.value.username}</div>);
           })}
         </div>
 

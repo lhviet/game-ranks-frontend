@@ -62,12 +62,12 @@ class App extends React.Component<Props> {
           <br />
           <ul>
             {Object.keys(user).map((uKeyid) => <ListItem key={uKeyid}>
-              <Link to={`/user/${user[uKeyid].value.username}`}>
+              <Link to={`/user/${user[uKeyid].info.value.username}`}>
                 <div>{uKeyid}</div>
-                <div>{user[uKeyid].value.username}</div>
-                <div>{user[uKeyid].value.display_name}</div>
-                <div>{user[uKeyid].value.updated_at}</div>
-                <div>{user[uKeyid].value.created_at}</div>
+                <div>{user[uKeyid].info.value.username}</div>
+                <div>{user[uKeyid].info.value.display_name}</div>
+                <div>{user[uKeyid].info.value.updated_at}</div>
+                <div>{user[uKeyid].info.value.created_at}</div>
               </Link>
             </ListItem>)}
           </ul>

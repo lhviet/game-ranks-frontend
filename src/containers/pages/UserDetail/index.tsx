@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 import {Dispatch} from 'redux';
 
 import * as T from '^/store/types';
-import {AddNewMatch} from '^/store/duck/game';
 
 import UserDetail, {Props} from '^/components/pages/UserDetail';
+import {GetUserGameInfo} from '^/store/duck/user';
 
 type StatePropKeys = 'games' | 'user';
 export type StateProps = Pick<Props, StatePropKeys>;
 
-type DispatchPropsKey = 'addMatch';
+type DispatchPropsKey = 'getUserGameInfo';
 export type DispatchProps = Pick<Props, DispatchPropsKey>;
 
 export const mapStateToProps: (
@@ -27,12 +27,8 @@ export const mapDispatchToProps: (
 ) => DispatchProps = (
   dispatch
 ) => ({
-  addMatch(
-    gameKeyid: string,
-    winners: T.User['keyid'][],
-    losers: T.User['keyid'][]
-  ): void {
-    dispatch(AddNewMatch(gameKeyid, winners, losers));
+  getUserGameInfo(userKeyid: string): void {
+    dispatch(GetUserGameInfo(userKeyid));
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(UserDetail);

@@ -39,7 +39,6 @@ const epicAddNewMatch = (action$: ActionsObservable<AnyAction>) => action$.pipe(
         ...data.losers.map((l: string) => ({user_keyid: l, status: T.WinLossStatus.LOSS})),
       ]
     };
-    console.log('body = ', body);
 
     return ajax.post(makeAPIURL('game', data.gameKeyid, 'match'), body, T.HEADER_JSON)
       .pipe(

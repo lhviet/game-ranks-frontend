@@ -44,6 +44,20 @@ export interface User extends BaseContent {
   };
 }
 
+export interface RecordInfo {
+  [opponent_keyid: string]: {
+    total: number;
+    win: number;
+  };
+}
+export interface UserGameInfo {
+  [game_keyid: string]: {
+    total: number;
+    win: number;
+    records: RecordInfo;
+  };
+}
+
 export interface GameState {
   readonly games: Game[];
   readonly getGamesStatus: APIStatus;
@@ -51,11 +65,15 @@ export interface GameState {
 }
 export interface UserState {
   readonly user: {
-    [user_keyid: string]: User;
+    [user_keyid: string]: {
+      info: User;
+      game: UserGameInfo;
+    };
   };
-  readonly userIds: number[];
+  readonly userIds: User['keyid'][];
   readonly getUsersStatus: APIStatus;
   readonly addUsersStatus: APIStatus;
+  readonly getUserGameInfoStatus: APIStatus;
 }
 
 export interface State {
