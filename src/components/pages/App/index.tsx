@@ -1,12 +1,13 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, LinkProps} from 'react-router-dom';
 import styled, {StyledComponent} from 'styled-components';
 
 import * as T from '^/store/types';
 
 import Topbar from '^/components/molecules/Topbar';
 import AddUserForm from '^/containers/molecules/AddUserForm';
-import TimeSpan from '^/components/atoms/TimeSpan';
+import CardItemGame from '^/components/molecules/CardItemGame';
+import CardItemUser from '^/components/molecules/CardItemUser';
 
 const Root: StyledComponent<'div', {}> = styled.div`
   text-align: center;
@@ -16,15 +17,17 @@ const FixedTopbar: StyledComponent<React.ComponentClass, {}> = styled(Topbar)`
   position: fixed;
 `;
 
+const LinkItem: StyledComponent<React.ComponentClass<LinkProps>, {}> = styled(Link)`
+  text-decoration: none;
+  color: #464646;
+`;
+const LinkItemWrapper = styled.div`
+  margin-bottom: 10px;
+`;
+
 const PageContainer: StyledComponent<'div', {}> = styled.div`
   position: relative;
   padding: 20px;
-`;
-
-const ListItem: StyledComponent<'li', {}> = styled.li`
-  margin-bottom: 5px;
-  padding: 4px;
-  border: solid 1px grey;
 `;
 
 export interface Props {
@@ -45,16 +48,14 @@ class App extends React.Component<Props> {
           <br />
           <ul>
             {games.map((g) =>
-              <ListItem key={g.keyid}>
-                <Link to={`/game/${g.value.code}`}>
-                  <div>{g.keyid}</div>
-                  <div>{g.value.code}</div>
-                  <div>{g.value.name}</div>
-                  <div>{g.value.description}</div>
-                  <div>Updated at <TimeSpan timestamp={g.value.updated_at} /></div>
-                  <div>Updated at <TimeSpan timestamp={g.value.created_at} /></div>
-                </Link>
-              </ListItem>
+              <LinkItemWrapper key={g.keyid}>
+                <LinkItem to={`/game/${g.value.code}`}>
+                  <CardItemGame
+                    game={g}
+                    isFullDisplay={false}
+                  />
+                </LinkItem>
+              </LinkItemWrapper>
             )}
           </ul>
 
@@ -62,15 +63,16 @@ class App extends React.Component<Props> {
           <h2>User List</h2>
           <br />
           <ul>
-            {Object.keys(user).map((uKeyid) => <ListItem key={uKeyid}>
-              <Link to={`/user/${user[uKeyid].info.value.username}`}>
-                <div>{uKeyid}</div>
-                <div>{user[uKeyid].info.value.username}</div>
-                <div>{user[uKeyid].info.value.display_name}</div>
-                <div>{user[uKeyid].info.value.updated_at}</div>
-                <div>{user[uKeyid].info.value.created_at}</div>
-              </Link>
-            </ListItem>)}
+            {Object.keys(user).map((uKeyid) =>
+              <LinkItemWrapper key={uKeyid}>
+                <LinkItem to={`/user/${user[uKeyid].info.value.username}`}>
+                  <CardItemUser
+                    user={user[uKeyid].info}
+                    isFullDisplay={false}
+                  />
+                </LinkItem>
+              </LinkItemWrapper>
+            )}
           </ul>
         </PageContainer>
 

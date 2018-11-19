@@ -18,6 +18,7 @@ export const mapStateToProps: (
   { Game, User }
 ) => ({
   games: Game.games,
+  addMatchStatus: Game.addMatchStatus,
   user: User.user,
   userIds: User.userIds,
 });

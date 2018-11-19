@@ -12,8 +12,11 @@ export const USER__LIST: string = 'USER__LIST';
 export const ListUsers: () => Action = () => createActionStart(USER__LIST);
 
 export const USER__ADD: string = 'USER__ADD';
-export const AddNewUser: (username: string, display_name: string) => Action =
-  (username: string, display_name: string) => createActionStart(USER__ADD, {username, display_name});
+export const AddNewUser: (username: string, display_name: string, img_url: string) => Action = (
+  username: string,
+  display_name: string,
+  img_url: string,
+  ) => createActionStart(USER__ADD, {username, display_name, img_url});
 
 export const USER__GET_GAME_INFO: string = 'USER__GET_GAME_INFO';
 export const GetUserGameInfo: (user_keyid: string) => Action =

@@ -11,10 +11,10 @@ const Root: StyledComponent<'form', {}> = styled.form`
 interface InputProps {
   color: Color;
 }
-const Input: StyledComponent<'input', InputProps> = styled.input`
+const Input: StyledComponent<'input', {}> = styled.input`
   padding: 0.5em;
   margin: 0.5em;
-  color: ${props => props.color || 'palevioletred'};
+  color: ${(props: InputProps) => props.color || 'palevioletred'};
   background: papayawhip;
   border: none;
   border-radius: 3px;

@@ -29,9 +29,7 @@ function convert(unixtimestamp: number) {
   // Display date time in MM-dd-yyyy h:m:s format
   return month + '-' + day + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 }
-const TimeSpan: React.FunctionComponent<Props> = ({timestamp}: Props) => {
-  return (
-      <Root>{convert(timestamp / 1000)}</Root>
-  );
-};
+const TimeSpan: React.FunctionComponent<Props> = ({timestamp}: Props) => (
+  <Root>{convert(timestamp / 1000)}</Root>
+);
 export default TimeSpan;
