@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import {Dispatch} from 'redux';
 
+import {AddNewMatch, ResetAddMatchAPIStatus} from '^/store/duck/game';
 import * as T from '^/store/types';
-import {AddNewMatch} from '^/store/duck/game';
 
 import GameDetail, {Props} from '^/components/pages/GameDetail';
 
@@ -20,7 +20,7 @@ export const mapStateToProps: (
   games: Game.games,
   addMatchStatus: Game.addMatchStatus,
   user: User.user,
-  userIds: User.userIds,
+  userIds: User.userIds
 });
 
 export const mapDispatchToProps: (
@@ -34,6 +34,9 @@ export const mapDispatchToProps: (
     losers: T.User['keyid'][]
   ): void {
     dispatch(AddNewMatch(gameKeyid, winners, losers));
+  },
+  resetApiStatus(): void {
+    dispatch(ResetAddMatchAPIStatus());
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(GameDetail);

@@ -42,6 +42,14 @@ const SubmitButton: StyledComponent<'button', {}> = styled.button`
   &:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   }
+
+  &:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+`;
+const ResetButton = styled(SubmitButton)`
+  background-color: #ec9090;
 `;
 
 export interface Props {
@@ -55,6 +63,7 @@ export interface Props {
     winners: T.User['keyid'][],
     losers: T.User['keyid'][]
   ): void;
+  resetApiStatus(): void;
 }
 export interface State {
   isWinner: boolean;
@@ -70,14 +79,15 @@ class GameDetail extends React.Component<Props, State> {
     this.state = {
       isWinner: true,
       winners: [],
-      losers: []
+      losers: [],
     };
   }
 
   public render(): React.ReactNode {
-    const {match, games, addMatchStatus, user, userIds}: Props = this.props;
+    const {match, games, user, userIds, addMatchStatus}: Props = this.props;
     const {isWinner, winners, losers}: State = this.state;
     const game: T.Game | undefined = games.find((g) => g.value.code === match.params.game_code);
+
 
     const gameInfo: React.ReactNode = game === undefined ? (
       <h1>Game not Found :-(</h1>
@@ -112,9 +122,17 @@ class GameDetail extends React.Component<Props, State> {
           </ButtonUserBucket>
         </BucketWrapper>
 
-        <SubmitButton type='button' onClick={this.addMatch}>
+        <SubmitButton
+          type='button'
+          onClick={this.addMatch}
+          disabled={addMatchStatus === T.APIStatus.SUCCESS}
+        >
           {this.getSubmitButton(addMatchStatus)}
         </SubmitButton>
+
+        <ResetButton type='button' onClick={this.reset}>
+          {'Reset'}
+        </ResetButton>
       </Root>
     );
   }
@@ -166,10 +184,20 @@ class GameDetail extends React.Component<Props, State> {
   ))
 
   private addMatch = () => {
-    const game: T.Game | undefined = this.props.games.find((g) => g.value.code === this.props.match.params.game_code);
-    if (game) {
+    const game: T.Game | undefined = this.props.games
+      .find((g) => g.value.code === this.props.match.params.game_code);
+    if (game && this.props.addMatchStatus !== T.APIStatus.SUCCESS) {
       this.props.addMatch(game.keyid, this.state.winners, this.state.losers);
     }
+  }
+
+  private reset = () => {
+    this.props.resetApiStatus();
+    this.setState({
+      isWinner: true,
+      winners: [],
+      losers: [],
+    });
   }
 }
 

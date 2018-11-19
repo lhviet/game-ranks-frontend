@@ -11,10 +11,13 @@ import * as T from '^/store/types';
 export const GAME__LIST: string = 'GAME__LIST';
 export const ListGames: () => Action = () => createActionStart(GAME__LIST);
 
-export const GAME_MATCH__ADD: string = 'GAME_MATCH__ADD';
+export const GAME__ADD_MATCH: string = 'GAME__MATCH_ADD';
 export const AddNewMatch: (gameKeyid: string, winners: T.User['keyid'][], losers: T.User['keyid'][]) => Action =
   (gameKeyid: string, winners: T.User['keyid'][], losers: T.User['keyid'][]) =>
-    createActionStart(GAME_MATCH__ADD, {gameKeyid, winners, losers});
+    createActionStart(GAME__ADD_MATCH, {gameKeyid, winners, losers});
+
+export const GAME__MATCH_RESET_API: string = 'GAME__MATCH_RESET_API';
+export const ResetAddMatchAPIStatus: () => Action = () => createActionStart(GAME__MATCH_RESET_API);
 
 const epicListGames = (action$: ActionsObservable<AnyAction>) => action$.pipe(
   ofType(ListGames().type),
@@ -31,7 +34,7 @@ const epicListGames = (action$: ActionsObservable<AnyAction>) => action$.pipe(
 );
 
 const epicAddNewMatch = (action$: ActionsObservable<AnyAction>) => action$.pipe(
-  ofType(createActionStart(GAME_MATCH__ADD).type),
+  ofType(createActionStart(GAME__ADD_MATCH).type),
   mergeMap(({data}) => {
     const body = {
       participants: [
@@ -42,11 +45,11 @@ const epicAddNewMatch = (action$: ActionsObservable<AnyAction>) => action$.pipe(
 
     return ajax.post(makeAPIURL('game', data.gameKeyid, 'match'), body, T.HEADER_JSON)
       .pipe(
-        map(({response}) => createActionDone(GAME_MATCH__ADD, response)),
-        catchError((ajaxError: AjaxError) => [(createActionFailed(GAME_MATCH__ADD, ajaxError))]),
+        map(({response}) => createActionDone(GAME__ADD_MATCH, response)),
+        catchError((ajaxError: AjaxError) => [(createActionFailed(GAME__ADD_MATCH, ajaxError))]),
         takeUntil(
           action$.pipe(
-            ofType(createActionCancel(GAME_MATCH__ADD).type)
+            ofType(createActionCancel(GAME__ADD_MATCH).type)
           )
         )
       );
@@ -86,13 +89,15 @@ const reducer = (state = initialState, action: AnyAction) => {
     case `${GAME__LIST}_FAILED`:
       return {...state, getGamesStatus: T.APIStatus.ERROR};
 
-
-    case `${GAME_MATCH__ADD}_START`:
+    case `${GAME__ADD_MATCH}_START`:
       return {...state, addMatchStatus: T.APIStatus.PROGRESS};
-    case `${GAME_MATCH__ADD}_DONE`:
+    case `${GAME__ADD_MATCH}_DONE`:
       return {...state, addMatchStatus: T.APIStatus.SUCCESS};
-    case `${GAME_MATCH__ADD}_FAILED`:
+    case `${GAME__ADD_MATCH}_FAILED`:
       return {...state, addMatchStatus: T.APIStatus.ERROR};
+
+    case `${GAME__MATCH_RESET_API}_START`:
+      return {...state, addMatchStatus: T.APIStatus.IDLE};
 
     default:
       return state;
