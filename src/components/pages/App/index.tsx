@@ -4,10 +4,10 @@ import styled, {StyledComponent} from 'styled-components';
 
 import * as T from '^/store/types';
 
-import Topbar from '^/components/molecules/Topbar';
-import AddUserForm from '^/containers/molecules/AddUserForm';
 import CardItemGame from '^/components/molecules/CardItemGame';
 import CardItemUser from '^/components/molecules/CardItemUser';
+import Topbar from '^/components/molecules/Topbar';
+import AddUserForm from '^/containers/molecules/AddUserForm';
 
 const Root: StyledComponent<'div', {}> = styled.div`
   text-align: center;
@@ -22,7 +22,9 @@ const LinkItem: StyledComponent<React.ComponentClass<LinkProps>, {}> = styled(Li
   color: #464646;
 `;
 const LinkItemWrapper = styled.div`
-  margin-bottom: 10px;
+  display: inline-block;
+  min-width: 250px;
+  margin: 7px;
 `;
 
 const PageContainer: StyledComponent<'div', {}> = styled.div`

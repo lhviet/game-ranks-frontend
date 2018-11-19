@@ -2,14 +2,14 @@ import * as Chart from 'chart.js';
 import * as React from 'react';
 
 interface Props {
-  type?: 'pie' | 'doughnut';
   title: string;
-  loss: number;
-  won: number;
+  usernames: string[];
+  totals: number[];
 }
 
-class ChartPie extends React.Component<Props> {
+class ChartRadar extends React.Component<Props> {
   private readonly canvasRef: React.RefObject<HTMLCanvasElement>;
+  private chart: Chart;
 
   constructor(props: Props) {
     super(props);
@@ -17,7 +17,7 @@ class ChartPie extends React.Component<Props> {
   }
 
   public componentDidMount() {
-    const {type, title, loss, won} = this.props;
+    const {title, usernames, totals} = this.props;
     const canvas: HTMLCanvasElement | null = this.canvasRef.current;
 
     if (canvas === null) {
@@ -26,27 +26,30 @@ class ChartPie extends React.Component<Props> {
 
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
-    new Chart(ctx, {
-      type: type || 'pie',
+    this.chart = new Chart(ctx, {
+      type: 'radar',
       options: {
         title: {
-          display: true,
-          text: title
+          display: false,
         }
       },
       data: {
-        labels: [`${loss} Loss`, `${won} Won`],
-        datasets: [
-          {
-            data: [loss, won],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-            ]
-          }
-        ]
+        labels: usernames,
+        datasets: [{
+          label: title,
+          data: totals,
+        }]
       }
     });
+  }
+
+  public componentDidUpdate() {
+    this.chart.data.labels = this.props.usernames;
+    this.chart.data.datasets = [{
+      label: this.props.title,
+      data: this.props.totals,
+    }];
+    this.chart.update();
   }
 
   public render() {
@@ -59,4 +62,4 @@ class ChartPie extends React.Component<Props> {
   }
 }
 
-export default ChartPie;
+export default ChartRadar;

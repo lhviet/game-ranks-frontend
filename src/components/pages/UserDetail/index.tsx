@@ -2,13 +2,20 @@ import * as React from 'react';
 import { match } from 'react-router';
 import styled, {StyledComponent} from 'styled-components';
 
-import ButtonUser from '^/components/atoms/ButtonUser';
+import * as T from '^/store/types';
+
 import CardItemUser from '^/components/molecules/CardItemUser';
 import ChartPie from '^/components/molecules/ChartPie';
-import * as T from '^/store/types';
+import UserVersusInfo from '^/components/organisms/UserVersusInfo';
+import ChartRadar from '^/components/molecules/ChartRadar';
 
 const Root: StyledComponent<'div', {}> = styled.div`
   text-align: center;
+  margin-top: 10px;
+`;
+const GameWrapper: StyledComponent<'div', {}> = styled.div`
+  padding: 5px;
+  margin-top: 15px;
 `;
 const GameChartWrapper: StyledComponent<'div', {}> = styled.div`
   display: inline-block;
@@ -17,6 +24,27 @@ const GameChartWrapper: StyledComponent<'div', {}> = styled.div`
   border: solid 1px #e0e0e0;
   border-radius: 3px;
   cursor: pointer;
+  margin: 0 5px;
+`;
+const GameRadarWrapper: StyledComponent<'div', {}> = styled.div`
+  width: 400px;
+  height: 400px;
+  margin: 5px auto;
+`;
+const RecordInfoWrapper: StyledComponent<'div', {}> = styled.div`
+  max-width: 700px;
+  margin: 0 auto;
+`;
+const UserVersusInfoWrapper: StyledComponent<'div', {}> = styled.div`
+  display: inline-block;
+  margin-bottom: 15px;
+`;
+const Title: StyledComponent<'h2', {}> = styled.h2`
+  font-size: 18px
+  font-weight: 700;
+  color: gray;
+  margin-top: 10px;
+  margin-bottom: 15px;
 `;
 
 export interface Props {
@@ -70,7 +98,7 @@ class UserDetail extends React.Component<Props, State> {
     }
 
     const userInfo: React.ReactNode = currentUser === undefined ? (
-      <h1>User not Found :-(</h1>
+      <Title>User not Found :-(</Title>
     ) : (
       <CardItemUser user={currentUser.info} isFullDisplay={true} />
     );
@@ -94,7 +122,8 @@ class UserDetail extends React.Component<Props, State> {
       return undefined;
     }
 
-    return <React.Fragment>
+    return <GameWrapper>
+      <Title>Click on Game below to see detailed matches</Title>
       {
         Object.keys(currentUser.game).map((gId) => {
           const game = currentUser.game[gId];
@@ -104,7 +133,7 @@ class UserDetail extends React.Component<Props, State> {
           </GameChartWrapper>;
         })
       }
-    </React.Fragment>;
+    </GameWrapper>;
   }
 
   private getUserChart: (currentUser: T.UserGame | undefined) => React.ReactNode = (currentUser: T.UserGame | undefined) => {
@@ -115,32 +144,30 @@ class UserDetail extends React.Component<Props, State> {
 
     const gameRecords: T.RecordInfo = currentUser.game[selectedGameId].records;
 
+    const opponentNames = Object.keys(gameRecords).map((keyid) => this.props.user[keyid].info.value.username);
+    const opponentTotals = Object.keys(gameRecords).map((keyid) => gameRecords[keyid].total);
+
     return (
-      <table>
-        <tbody>
+      <RecordInfoWrapper>
+        <Title>{currentUser.game[selectedGameId].game_name}</Title>
+
+        <GameRadarWrapper>
+          <ChartRadar title={'Total games'} usernames={opponentNames} totals={opponentTotals} />
+        </GameRadarWrapper>
+
         {
           Object.keys(gameRecords).map((opponentId) => {
             const record = gameRecords[opponentId];
             const opponent = this.props.user[opponentId];
 
             return (
-              <tr key={opponentId}>
-                <td>
-                  <ButtonUser user={opponent.info}/>
-                </td>
-                <td>
-                  <ChartPie
-                    title={`${record.total} game matches`}
-                    loss={record.total - record.win}
-                    won={record.win}
-                  />
-                </td>
-              </tr>
+              <UserVersusInfoWrapper key={opponentId}>
+                <UserVersusInfo user={opponent.info} record={record} />
+              </UserVersusInfoWrapper>
             );
           })
         }
-        </tbody>
-      </table>
+      </RecordInfoWrapper>
     );
   }
 }

@@ -6,6 +6,7 @@ import styled, {StyledComponent} from 'styled-components';
 import * as T from '^/store/types';
 
 import ButtonUser from '^/components/atoms/ButtonUser';
+import SubmitButton from '^/components/atoms/SubmitButton';
 import ButtonUserBucket from '^/components/molecules/ButtonUserBucket';
 import CardItemGame from '^/components/molecules/CardItemGame';
 
@@ -25,29 +26,6 @@ const BucketWrapper: StyledComponent<'div', {}> = styled.div`
   margin: 0 auto;
 `;
 
-const SubmitButton: StyledComponent<'button', {}> = styled.button`
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 10px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-
-  &:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-  }
-
-  &:disabled {
-    background-color: grey;
-    cursor: not-allowed;
-  }
-`;
 const ResetButton = styled(SubmitButton)`
   background-color: #ec9090;
 `;
@@ -79,7 +57,7 @@ class GameDetail extends React.Component<Props, State> {
     this.state = {
       isWinner: true,
       winners: [],
-      losers: [],
+      losers: []
     };
   }
 
@@ -87,7 +65,6 @@ class GameDetail extends React.Component<Props, State> {
     const {match, games, user, userIds, addMatchStatus}: Props = this.props;
     const {isWinner, winners, losers}: State = this.state;
     const game: T.Game | undefined = games.find((g) => g.value.code === match.params.game_code);
-
 
     const gameInfo: React.ReactNode = game === undefined ? (
       <h1>Game not Found :-(</h1>
@@ -123,11 +100,10 @@ class GameDetail extends React.Component<Props, State> {
         </BucketWrapper>
 
         <SubmitButton
-          type='button'
           onClick={this.addMatch}
           disabled={addMatchStatus === T.APIStatus.SUCCESS}
         >
-          {this.getSubmitButton(addMatchStatus)}
+          {this.getSubmitButtonText(addMatchStatus)}
         </SubmitButton>
 
         <ResetButton type='button' onClick={this.reset}>
@@ -137,7 +113,7 @@ class GameDetail extends React.Component<Props, State> {
     );
   }
 
-  private getSubmitButton: (status: T.APIStatus) => string = (status: T.APIStatus) => {
+  private getSubmitButtonText: (status: T.APIStatus) => string = (status: T.APIStatus) => {
     switch (status) {
       case T.APIStatus.IDLE:
         return 'Submit';
@@ -196,7 +172,7 @@ class GameDetail extends React.Component<Props, State> {
     this.setState({
       isWinner: true,
       winners: [],
-      losers: [],
+      losers: []
     });
   }
 }

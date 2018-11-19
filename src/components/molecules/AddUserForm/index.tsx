@@ -1,7 +1,8 @@
 import {Color} from 'csstype';
 import * as React from 'react';
-import {FormEvent, SyntheticEvent} from 'react';
 import styled, {StyledComponent} from 'styled-components';
+
+import SubmitButton from '^/components/atoms/SubmitButton';
 
 const Root: StyledComponent<'form', {}> = styled.form`
   border: solid 1px grey;
@@ -18,10 +19,6 @@ const Input: StyledComponent<'input', {}> = styled.input`
   background: papayawhip;
   border: none;
   border-radius: 3px;
-`;
-
-const SubmitButton: StyledComponent<'button', {}> = styled.button`
-  padding: 15px;
 `;
 
 export interface State {
@@ -44,16 +41,16 @@ class AddUserForm extends React.Component<Props, State> {
     };
   }
 
-  private onChangeUsername = (event: FormEvent<HTMLInputElement>) => {
+  private onChangeUsername = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({username: event.currentTarget.value});
   }
-  private onChangeDisplayname = (event: FormEvent<HTMLInputElement>) => {
+  private onChangeDisplayname = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({display_name: event.currentTarget.value});
   }
-  private onChangeImgUrl = (event: FormEvent<HTMLInputElement>) => {
+  private onChangeImgUrl = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({img_url: event.currentTarget.value});
   }
-  private onSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
+  private onSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     this.props.onSubmitNewUser(this.state.username, this.state.display_name, this.state.img_url);
     event.preventDefault();
   }
