@@ -2,11 +2,21 @@ import * as React from 'react';
 import { match } from 'react-router';
 import styled, {StyledComponent} from 'styled-components';
 
+import ButtonUser from '^/components/atoms/ButtonUser';
+import CardItemUser from '^/components/molecules/CardItemUser';
+import ChartPie from '^/components/molecules/ChartPie';
 import * as T from '^/store/types';
-import ChartBar from '^/components/molecules/ChartBar';
 
 const Root: StyledComponent<'div', {}> = styled.div`
   text-align: center;
+`;
+const GameChartWrapper: StyledComponent<'div', {}> = styled.div`
+  display: inline-block;
+  width: 300px;
+  height: 250px;
+  border: solid 1px #e0e0e0;
+  border-radius: 3px;
+  cursor: pointer;
 `;
 
 export interface Props {
@@ -35,7 +45,6 @@ class UserDetail extends React.Component<Props, State> {
       const currentUser = userIds.map((uId) => user[uId])
         .find((u) => u.info.value.username === match.params.username);
       if (currentUser) {
-        console.log('dispatch get game info');
         this.props.getUserGameInfo(currentUser.info.keyid);
       }
     }
@@ -47,7 +56,6 @@ class UserDetail extends React.Component<Props, State> {
       const currentUser = userIds.map((uId) => user[uId])
         .find((u) => u.info.value.username === match.params.username);
       if (currentUser) {
-        console.log('dispatch get game info');
         this.props.getUserGameInfo(currentUser.info.keyid);
       }
     }
@@ -59,28 +67,80 @@ class UserDetail extends React.Component<Props, State> {
     if (userIds) {
       currentUser = userIds.map((uId) => user[uId])
         .find((u) => u.info.value.username === match.params.username);
-      if (currentUser) {
-        console.log('currentUser game = ', currentUser.game);
-      }
     }
+
+    const userInfo: React.ReactNode = currentUser === undefined ? (
+      <h1>User not Found :-(</h1>
+    ) : (
+      <CardItemUser user={currentUser.info} isFullDisplay={true} />
+    );
 
     return (
       <Root>
-        Hello, this is UserDetail of {currentUser ? currentUser.info.value.display_name : 'ERROR, does this User exist ?!'}
+        {userInfo}
 
-        <ChartBar />
+        {this.getGameChart(currentUser)}
 
-        {currentUser !== undefined && currentUser.game && (
-          Object.keys(currentUser.game).map((gId) => {
-            const game = currentUser!.game[gId];
-            return <div>
-              <h1>{game.game_name} ({game.game_code})</h1>
-              <div>Total: {game.total}</div>
-              <div>Won: {game.win}</div>
-            </div>;
-          })
-        )}
+        {this.getUserChart(currentUser)}
+
       </Root>
+    );
+  }
+
+  private selectGame = (selectedGameId: T.Game['keyid']) => this.setState({selectedGameId});
+
+  private getGameChart: (currentUser: T.UserGame | undefined) => React.ReactNode = (currentUser: T.UserGame | undefined) => {
+    if (currentUser === undefined || currentUser.game === undefined) {
+      return undefined;
+    }
+
+    return <React.Fragment>
+      {
+        Object.keys(currentUser.game).map((gId) => {
+          const game = currentUser.game[gId];
+
+          return <GameChartWrapper key={gId} onClick={() => this.selectGame(gId)}>
+            <ChartPie title={`${game.total} matches of ${game.game_name}`} loss={game.total - game.win} won={game.win} />
+          </GameChartWrapper>;
+        })
+      }
+    </React.Fragment>;
+  }
+
+  private getUserChart: (currentUser: T.UserGame | undefined) => React.ReactNode = (currentUser: T.UserGame | undefined) => {
+    const {selectedGameId} = this.state;
+    if (currentUser === undefined || currentUser.game === undefined || selectedGameId === undefined) {
+      return undefined;
+    }
+
+    const gameRecords: T.RecordInfo = currentUser.game[selectedGameId].records;
+
+    return (
+      <table>
+        <tbody>
+        {
+          Object.keys(gameRecords).map((opponentId) => {
+            const record = gameRecords[opponentId];
+            const opponent = this.props.user[opponentId];
+
+            return (
+              <tr key={opponentId}>
+                <td>
+                  <ButtonUser user={opponent.info}/>
+                </td>
+                <td>
+                  <ChartPie
+                    title={`${record.total} game matches`}
+                    loss={record.total - record.win}
+                    won={record.win}
+                  />
+                </td>
+              </tr>
+            );
+          })
+        }
+        </tbody>
+      </table>
     );
   }
 }

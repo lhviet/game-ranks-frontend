@@ -63,12 +63,12 @@ const UserCode: StyledComponent<'div', {}> = styled.div`
 `;
 export interface Props {
   user: T.User;
-  onClick(user_keyid: string): void;
+  onClick?(user_keyid: string): void;
 }
 
 const ButtonUser: React.FunctionComponent<Props> = ({user, onClick}: Props) => {
   return (
-    <Root onClick={() => onClick(user.keyid)}>
+    <Root onClick={() => onClick && onClick(user.keyid)}>
       <ButtonWrapper>
         <ImageWrapper>
           <Image src={user.value.img_url} />

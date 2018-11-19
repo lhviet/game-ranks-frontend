@@ -108,15 +108,17 @@ const CardItemGame: React.FunctionComponent<Props> = ({game, isFullDisplay}: Pro
       </ImageWrapper>
       <GameInfoWrapper>
         <table>
-          <tr>
-            <td>Code</td>
-            <td><GameCode>{game.value.code}</GameCode></td>
-          </tr>
-          <tr>
-            <td>Game</td>
-            <td><GameName>{game.value.name}</GameName></td>
-          </tr>
-          {extraInfo}
+          <tbody>
+            <tr>
+              <td>Code</td>
+              <td><GameCode>{game.value.code}</GameCode></td>
+            </tr>
+            <tr>
+              <td>Game</td>
+              <td><GameName>{game.value.name}</GameName></td>
+            </tr>
+            {extraInfo}
+          </tbody>
         </table>
       </GameInfoWrapper>
     </Root>

@@ -97,15 +97,17 @@ const CardItemUser: React.FunctionComponent<Props> = ({user, isFullDisplay}: Pro
       </ImageWrapper>
       <UserInfoWrapper>
         <table>
-          <tr>
-            <td>Code</td>
-            <td><UserCode>{user.value.username}</UserCode></td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td><UserName>{user.value.display_name}</UserName></td>
-          </tr>
-          {extraInfo}
+          <tbody>
+            <tr>
+              <td>Code</td>
+              <td><UserCode>{user.value.username}</UserCode></td>
+            </tr>
+            <tr>
+              <td>User</td>
+              <td><UserName>{user.value.display_name}</UserName></td>
+            </tr>
+            {extraInfo}
+          </tbody>
         </table>
       </UserInfoWrapper>
     </Root>
