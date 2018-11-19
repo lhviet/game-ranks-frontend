@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b0642703-0bf8-4a46-9d71-3eb41049d7ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/molecules/ChartPie/index.tsx" afterDir="false" />
+    <list default="true" id="b0642703-0bf8-4a46-9d71-3eb41049d7ea" name="Default Changelist" comment="Game Pie Chart">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/atoms/ButtonUser/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/atoms/ButtonUser/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/molecules/CardItemGame/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/CardItemGame/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/molecules/CardItemUser/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/CardItemUser/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/UserDetail/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/UserDetail/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/duck/API.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/duck/API.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,14 +18,14 @@
     <session id="-2125908594">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -37,10 +33,10 @@
           <entry key="css" value="5" />
           <entry key="html" value="3" />
           <entry key="js" value="9" />
-          <entry key="json" value="19" />
+          <entry key="json" value="20" />
           <entry key="md" value="1" />
           <entry key="png" value="1" />
-          <entry key="ts" value="62" />
+          <entry key="ts" value="64" />
           <entry key="tsx" value="84" />
         </counts>
       </usages-collector>
@@ -49,10 +45,10 @@
           <entry key="CSS" value="5" />
           <entry key="HTML" value="3" />
           <entry key="Image" value="1" />
-          <entry key="JSON" value="18" />
+          <entry key="JSON" value="19" />
           <entry key="JavaScript" value="9" />
           <entry key="Markdown" value="1" />
-          <entry key="TypeScript" value="62" />
+          <entry key="TypeScript" value="64" />
           <entry key="TypeScript JSX" value="84" />
           <entry key="tsconfig" value="1" />
         </counts>
@@ -62,9 +58,9 @@
           <entry key="html" value="12" />
           <entry key="js" value="179" />
           <entry key="json" value="279" />
-          <entry key="ts" value="2573" />
+          <entry key="ts" value="2580" />
           <entry key="tsx" value="9253" />
-          <entry key="txt" value="203" />
+          <entry key="txt" value="212" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -72,16 +68,16 @@
           <entry key="HTML" value="12" />
           <entry key="JSON" value="278" />
           <entry key="JavaScript" value="185" />
-          <entry key="PLAIN_TEXT" value="197" />
-          <entry key="TypeScript" value="2573" />
+          <entry key="PLAIN_TEXT" value="206" />
+          <entry key="TypeScript" value="2580" />
           <entry key="TypeScript JSX" value="9253" />
           <entry key="tsconfig" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="TsLintLanguageService" value="14" />
-          <entry key="TypeScriptServerServiceImpl" value="14" />
+          <entry key="TsLintLanguageService" value="15" />
+          <entry key="TypeScriptServerServiceImpl" value="15" />
         </counts>
       </usages-collector>
     </session>
@@ -89,37 +85,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/pages/UserDetail/index.tsx">
+        <entry file="file://$PROJECT_DIR$/src/store/duck/API.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="102" column="55" selection-start-line="102" selection-start-column="55" selection-end-line="102" selection-end-column="55" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/pages/App/index.tsx">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="141">
+              <caret line="96" column="23" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/atoms/ButtonUser/index.tsx">
+        <entry file="file://$PROJECT_DIR$/src/registerServiceWorker.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="74" column="23" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="236">
+              <caret line="17" column="62" lean-forward="true" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -146,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/molecules/ChartPie/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="459">
-              <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+              <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -164,7 +151,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/molecules/CardItemUser/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1547">
-              <caret line="96" column="21" lean-forward="true" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
+              <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -172,8 +159,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/molecules/CardItemGame/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1632">
-              <caret line="101" column="16" lean-forward="true" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="16" />
+            <state relative-caret-position="1717">
+              <caret line="101" column="16" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="16" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -184,8 +171,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/pages/GameDetail/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="79" column="96" lean-forward="true" selection-start-line="79" selection-start-column="96" selection-end-line="85" selection-end-column="6" />
+            <state relative-caret-position="1343">
+              <caret line="79" column="96" selection-start-line="79" selection-start-column="96" selection-end-line="85" selection-end-column="6" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -204,8 +191,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>username</find>
-      <find>onSubmitNewUser</find>
       <find>description</find>
       <find>extends React.</find>
       <find>Props&gt; = styled</find>
@@ -234,6 +219,8 @@
       <find>CardItemUser</find>
       <find>total</find>
       <find>&lt;ChartPie</find>
+      <find>3001</find>
+      <find>localhost</find>
     </findStrings>
     <replaceStrings>
       <replace>users</replace>
@@ -258,7 +245,6 @@
         <option value="$PROJECT_DIR$/config/webpack.config.common.js" />
         <option value="$PROJECT_DIR$/config/webpack.config.prod.js" />
         <option value="$PROJECT_DIR$/src/App.tsx" />
-        <option value="$PROJECT_DIR$/src/store/duck/API.ts" />
         <option value="$PROJECT_DIR$/src/store/duck/actions.ts" />
         <option value="$PROJECT_DIR$/src/store/duck/ActionHelper.ts" />
         <option value="$PROJECT_DIR$/tslint.json" />
@@ -296,6 +282,7 @@
         <option value="$PROJECT_DIR$/src/components/molecules/CardItemGame/index.tsx" />
         <option value="$PROJECT_DIR$/src/components/molecules/ChartPie/index.tsx" />
         <option value="$PROJECT_DIR$/src/components/pages/UserDetail/index.tsx" />
+        <option value="$PROJECT_DIR$/src/store/duck/API.ts" />
       </list>
     </option>
   </component>
@@ -339,7 +326,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -481,6 +467,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -590,7 +577,8 @@
       <workItem from="1542584422818" duration="142000" />
       <workItem from="1542589748284" duration="3211000" />
       <workItem from="1542593206600" duration="2469000" />
-      <workItem from="1542596029345" duration="218000" />
+      <workItem from="1542596029345" duration="372000" />
+      <workItem from="1542601270865" duration="1142000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1542351141635</created>
@@ -683,23 +671,30 @@
       <option name="project" value="LOCAL" />
       <updated>1542592467243</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Game Pie Chart">
+      <created>1542596264569</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1542596264569</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71599000" />
+    <option name="totallyTimeSpent" value="72895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19863014" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20095949" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Storybook" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Run" order="1" weight="0.3373102" />
+      <window_info active="true" anchor="bottom" id="Run" order="1" visible="true" weight="0.3373102" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
@@ -708,11 +703,11 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.329718" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.329718" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.48085105" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.4804772" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Find" order="3" weight="0.33355704" />
+      <window_info anchor="right" id="Find" order="3" weight="0.33742005" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -761,16 +756,10 @@
     <MESSAGE value="Add Chart.js" />
     <MESSAGE value="TimeSpan" />
     <MESSAGE value="Game Detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="Game Detail" />
+    <MESSAGE value="Game Pie Chart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game Pie Chart" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/webpack.config.prod.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="218" column="77" selection-start-line="218" selection-start-column="69" selection-end-line="218" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.css" />
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react.d.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -792,13 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/duck/API.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -892,13 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="57" column="24" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1008,9 +983,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/pages/UserDetail/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/App/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
+        <state relative-caret-position="1156">
           <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -1020,7 +1005,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/atoms/ButtonUser/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
+        <state relative-caret-position="1258">
           <caret line="74" column="23" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -1042,6 +1027,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/molecules/ChartPie/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@types/chart.js/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3859">
@@ -1052,14 +1044,14 @@
     <entry file="file://$PROJECT_DIR$/src/components/molecules/CardItemUser/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1547">
-          <caret line="96" column="21" lean-forward="true" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
+          <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/molecules/CardItemGame/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="101" column="16" lean-forward="true" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="16" />
+        <state relative-caret-position="1717">
+          <caret line="101" column="16" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="16" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -1068,28 +1060,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/GameDetail/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="79" column="96" lean-forward="true" selection-start-line="79" selection-start-column="96" selection-end-line="85" selection-end-column="6" />
+        <state relative-caret-position="1343">
+          <caret line="79" column="96" selection-start-line="79" selection-start-column="96" selection-end-line="85" selection-end-column="6" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/molecules/ChartPie/index.tsx">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+        <state relative-caret-position="141">
+          <caret line="96" column="23" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/UserDetail/index.tsx">
+    <entry file="file://$PROJECT_DIR$/src/registerServiceWorker.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="102" column="55" selection-start-line="102" selection-start-column="55" selection-end-line="102" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="236">
+          <caret line="17" column="62" lean-forward="true" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/duck/API.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
         </state>
       </provider>
     </entry>
