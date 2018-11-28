@@ -15,8 +15,8 @@ import {ListGames} from '^/store/duck/game';
 import {ListUsers} from '^/store/duck/user';
 
 import Game from '^/components/pages/Game';
+import User from '^/components/pages/User';
 import App from '^/containers/pages/App';
-import User from './components/pages/User';
 
 const MyApp: StyledComponent<React.ComponentClass, {}> = styled(App)`
   margin: 0;

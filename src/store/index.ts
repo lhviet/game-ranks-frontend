@@ -1,7 +1,6 @@
 import {connectRouter, routerMiddleware} from 'connected-react-router';
 import {History} from 'history';
 import {applyMiddleware, combineReducers, createStore, Reducer} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
 import {combineEpics, createEpicMiddleware, Epic} from 'redux-observable';
 
 import { epics as gameEpic } from '^/store/duck/game';
@@ -24,13 +23,12 @@ export const configureStore = (
   history: History,
   reducers: Reducer<T.State>
 ) => {
-  const enhancer = composeWithDevTools(
+  const enhancer =
     applyMiddleware(
       epicMiddleware,
       routerMiddleware(history)
-    )
-    // other store enhancers if any
-  );
+      // other store enhancers if any
+    );
 
   const store = createStore(reducers, enhancer);
 
